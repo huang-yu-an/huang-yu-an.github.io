@@ -25,3 +25,7 @@ dist/
 # Environment overrides
 .env
 .env.*
+
+# Local deploy credentials (NEVER commit tokens)
+.deploy-credentials.sh
+
