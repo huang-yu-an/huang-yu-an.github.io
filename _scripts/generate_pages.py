@@ -1,166 +1,37 @@
 #!/usr/bin/env python3
 """
-Generate a single-page bilingual academic website for Yu-An Huang.
-Produces root index.html with all sections (home, research, news, publications,
-teaching, cv, contact) on one long scrollable page.
-
-Design: flat, no buttons, scroll-driven. Chinese content stacked above
-English content within each section.
+Generate a concise, single-page, Chinese-only academic website for Yu-An Huang.
+Hero + News + Publications only. No English. No teaching/CV/contact sections.
 """
 
 from pathlib import Path
 
 ROOT = Path('/Users/huang/WorkBuddy/2026-09-27-16-20-44/yu-anhuang.github.io')
-PHOTO = "assets/img/photo-web.jpg"  # user's actual photo
+PHOTO = "assets/img/photo-web.jpg"
 
-
-# ============================================================================
-#  SECTIONS  — each section produces two stacked blocks (CN then EN)
-# ============================================================================
 
 def hero_block():
-    """Top hero with photo on the right, name/title/contact on the left."""
     return f"""
 <section id="home" class="hero">
+  <img class="hero-photo" src="{PHOTO}" alt="Yu-An Huang" width="160" height="210">
   <div class="hero-text">
-    <div class="hero-name-cn">黄裕安</div>
+    <div class="hero-name">黄裕安</div>
     <div class="hero-name-en">Yu-An Huang, Ph.D.</div>
     <div class="hero-title">
-      <span class="lang-tag">中</span>
       长聘教授 · 博士生导师 · 西北工业大学计算机学院
     </div>
-    <div class="hero-title">
-      <span class="lang-tag">EN</span>
-      Tenured Professor · Ph.D. Advisor · NWPU
-    </div>
     <p class="hero-bio">
-      <span class="lang-tag">中</span>
-      主要研究方向是<strong>生物医学大数据、计算生物学、人工智能与数据挖掘</strong>。
-      主持国家青年科学基金项目 B 类（国家优青）、面上项目、青年科学基金 C 类等。
-      发表论文 100 余篇，Google Scholar 引用 4000 余次，H-index 37。
-    </p>
-    <p class="hero-bio">
-      <span class="lang-tag">EN</span>
-      Research focuses on <strong>biomedical big data, computational biology,
-      AI, and data mining</strong>. Principal investigator on multiple NSFC grants
-      including the National Outstanding Youth Science Foundation (B).
-      100+ papers; Google Scholar 4,000+ citations; H-index 37.
+      研究方向<strong>生物医学大数据</strong>、<strong>计算生物学</strong>、<strong>人工智能</strong>与数据挖掘。
+      主持国家杰出青年科学基金（B 类）、面上、青年（C 类）等项目。
+      论文 <strong>4000+</strong> 引用，H-index <strong>37</strong>。
     </p>
     <p class="hero-links">
-      <a href="mailto:yuanhuang@nwpu.edu.cn">📧 yuanhuang@nwpu.edu.cn</a>
-      <a href="#publications">📚 论文 Publications</a>
-      <a href="https://teacher.nwpu.edu.cn/yuanhuang.html" target="_blank" rel="noopener">🏛️ 西工大主页</a>
+      <a href="mailto:yuanhuang@nwpu.edu.cn">yuanhuang@nwpu.edu.cn</a>
+      <span class="sep">·</span>
+      <a href="https://teacher.nwpu.edu.cn/yuanhuang.html" target="_blank" rel="noopener">西工大主页</a>
+      <span class="sep">·</span>
+      <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
     </p>
-  </div>
-  <img class="hero-photo" src="{PHOTO}" alt="Yu-An Huang" width="280" height="367">
-</section>
-"""
-
-
-def research_block():
-    return """
-<section id="research" class="section">
-  <header class="section-header">
-    <h2 class="section-title"><span class="zh">研究方向</span><span class="en">Research Interests</span></h2>
-    <div class="section-rule"></div>
-  </header>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>单细胞组学与计算生物学</h3>
-      <p>
-        单细胞 RNA 测序（scRNA-seq）让我们得以在细胞分辨率下研究组织异质性、肿瘤微环境与发育轨迹。
-        提出了一系列用于<strong>细胞类型识别</strong>、<strong>细胞间通信推断</strong>、
-        <strong>药物响应预测</strong>的图神经网络与 Transformer 方法，发表在
-        <em>Genome Biology</em>、<em>Communications Biology</em>、<em>PLoS Computational Biology</em> 等期刊。
-      </p>
-    </div>
-    <div class="lang-block en">
-      <h3>Single-cell Omics &amp; Computational Biology</h3>
-      <p>
-        scRNA-seq reveals tissue heterogeneity, tumor microenvironment and developmental
-        trajectories at cellular resolution. We develop GNNs and Transformers for
-        <strong>cell-type identification</strong>, <strong>cell-cell communication inference</strong>,
-        and <strong>drug-response prediction</strong>, published in
-        <em>Genome Biology</em>, <em>Communications Biology</em>, <em>PLoS Computational Biology</em>, etc.
-      </p>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>脑影像与神经退行性疾病</h3>
-      <p>
-        结合 fMRI 与单细胞数据，探索阿尔茨海默病等神经退行性疾病的早期诊断标志物。
-        代表工作 <em>scBIT</em> 把单细胞转录组信息融入 fMRI 预测框架（<em>IEEE TMI</em> 2026）。
-      </p>
-    </div>
-    <div class="lang-block en">
-      <h3>Neuroimaging &amp; Neurodegenerative Diseases</h3>
-      <p>
-        Integrating fMRI with single-cell data for early diagnostic biomarkers of
-        Alzheimer's disease and other neurodegenerative disorders.
-        <em>scBIT</em> fuses single-cell transcriptomics into fMRI-based prediction
-        (<em>IEEE TMI</em> 2026).
-      </p>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>生物医学知识图谱与链路预测</h3>
-      <p>
-        lncRNA–miRNA、circRNA–disease、miRNA–drug、TF–target gene 等生物实体之间相互作用预测，
-        是药物重定位与精准医疗的关键。基于异质图嵌入、图卷积与自编码器的方法体系。
-      </p>
-    </div>
-    <div class="lang-block en">
-      <h3>Biomedical Knowledge Graphs &amp; Link Prediction</h3>
-      <p>
-        Predicting interactions among lncRNAs, miRNAs, circRNAs, diseases, drugs and TFs
-        is key to drug repurposing and precision medicine. Heterogeneous-graph-embedding,
-        graph-convolution and autoencoder-based methods.
-      </p>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>医学图像与可解释 AI</h3>
-      <p>
-        去偏表征、反事实推理与因果干预在医学影像中的应用。代表工作
-        <em>Anti-Confounding Hashing</em>（<em>IEEE TNNLS</em> 2025）与 <em>CausalMixNet</em>（<em>Medical Image Analysis</em> 2025）。
-      </p>
-    </div>
-    <div class="lang-block en">
-      <h3>Medical Imaging &amp; Explainable AI</h3>
-      <p>
-        Debiased representation, counterfactual reasoning, and causal intervention
-        for medical image analysis. Representative works:
-        <em>Anti-Confounding Hashing</em> (<em>IEEE TNNLS</em> 2025) and <em>CausalMixNet</em> (<em>MIA</em> 2025).
-      </p>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>主持项目</h3>
-      <ul class="bullet-list">
-        <li>国家杰出青年科学基金 B 类（国家优青）</li>
-        <li>国家自然科学基金面上项目</li>
-        <li>国家自然科学基金青年科学基金 C 类</li>
-        <li>省级自然科学基金 2 项</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Active Funding</h3>
-      <ul class="bullet-list">
-        <li>National Outstanding Youth Science Foundation (B), NSFC</li>
-        <li>General Program, NSFC</li>
-        <li>Youth Science Fund (C), NSFC</li>
-        <li>Two Provincial Natural Science Foundations</li>
-      </ul>
-    </div>
   </div>
 </section>
 """
@@ -168,50 +39,37 @@ def research_block():
 
 def news_block():
     return """
-<section id="news" class="section section-alt">
+<section id="news" class="section">
   <header class="section-header">
-    <h2 class="section-title"><span class="zh">最新动态</span><span class="en">Recent News</span></h2>
+    <h2 class="section-title">近期动态</h2>
     <div class="section-rule"></div>
   </header>
 
   <ul class="news-list">
-    <li><span class="date">2026 · 09</span><span class="body">更新个人主页，欢迎访问！<em>· Personal website launched — welcome!</em></span></li>
-    <li><span class="date">2026 · 09</span><span class="body">论文 <em>scBIT</em> 被 <strong>IEEE Transactions on Medical Imaging</strong> 接收。 <em>· Accepted to IEEE TMI.</em></span></li>
-    <li><span class="date">2025 · 12</span><span class="body">论文 <em>DAGFormer</em> 被 <strong>PLoS Computational Biology</strong> 接收。 <em>· Accepted to PLoS Comp Biol.</em></span></li>
-    <li><span class="date">2025 · 12</span><span class="body">论文 <em>scTECTA</em> 被 <strong>IEEE TCBB</strong> 接收。 <em>· Accepted to IEEE TCBB.</em></span></li>
-    <li><span class="date">2025 · 11</span><span class="body">论文 <em>scKAN</em> 被 <strong>Genome Biology</strong> 接收。 <em>· Accepted to Genome Biology.</em></span></li>
-    <li><span class="date">2025 · 10</span><span class="body">论文 <em>scGSDR</em> 被 <strong>Communications Biology</strong> 接收。 <em>· Accepted to Communications Biology.</em></span></li>
-    <li><span class="date">2025 · 09</span><span class="body">开始招收 2027 级硕士（推免）与博士研究生。 <em>· Recruiting Master's (推免) &amp; Ph.D. for Fall 2027.</em></span></li>
+    <li><span class="date">2026 · 09</span><span class="body">个人主页上线，欢迎访问。</span></li>
+    <li><span class="date">2026 · 09</span><span class="body">论文 <em>scBIT</em> 被 <strong class="hl">IEEE TMI</strong> 接收。</span></li>
+    <li><span class="date">2025 · 12</span><span class="body">论文 <em>DAGFormer</em> 被 <strong class="hl">PLoS Comp Biol</strong> 接收。</span></li>
+    <li><span class="date">2025 · 12</span><span class="body">论文 <em>scTECTA</em> 被 <strong class="hl">IEEE TCBB</strong> 接收。</span></li>
+    <li><span class="date">2025 · 11</span><span class="body">论文 <em>scKAN</em> 被 <strong class="hl">Genome Biology</strong> 接收。</span></li>
+    <li><span class="date">2025 · 10</span><span class="body">论文 <em>scGSDR</em> 被 <strong class="hl">Communications Biology</strong> 接收。</span></li>
+    <li><span class="date">2025 · 09</span><span class="body">招收 2027 级硕士（推免）与博士研究生。</span></li>
   </ul>
 </section>
 """
 
 
 def publications_block():
-    """Publications section - JS will inject the list, but we render the heading + filters."""
     return """
 <section id="publications" class="section">
   <header class="section-header">
-    <h2 class="section-title"><span class="zh">论文</span><span class="en">Publications</span></h2>
+    <h2 class="section-title">论文</h2>
     <div class="section-rule"></div>
   </header>
 
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <p>
-        下面是完整的论文列表，按发表年份倒序排列。支持<strong>关键词搜索</strong>、
-        按<strong>类型</strong>或<strong>期刊/会议</strong>筛选，以及切换<strong>排序方式</strong>。
-        <strong>加粗</strong>作者为本人的姓名。
-      </p>
-    </div>
-    <div class="lang-block en">
-      <p>
-        Complete list of publications, sorted by year descending. Supports
-        <strong>keyword search</strong>, filter by <strong>type</strong> or <strong>venue</strong>,
-        and toggle <strong>sort order</strong>. <strong>Bold</strong> authors indicate Yu-An Huang.
-      </p>
-    </div>
-  </div>
+  <p class="section-intro">
+    按年份倒序。支持<strong class="hl">关键词搜索</strong>、按<strong class="hl">类型</strong>或<strong class="hl">期刊/会议</strong>筛选、切换排序。
+    <strong class="hl">蓝色</strong>作者为本人的姓名。左侧为期刊缩写。
+  </p>
 
   <div id="pub-target"></div>
 
@@ -221,24 +79,24 @@ def publications_block():
       bibPath: 'publications.bib',
       target: document.getElementById('pub-target'),
       labels: {
-        search: '搜索 / Search…',
-        type: '类型 / Type',
-        allTypes: '全部类型 / All types',
-        allVenues: '全部期刊 / All venues',
-        sort: '排序 / Sort',
-        newest: '最新优先 / Newest first',
-        oldest: '最早优先 / Oldest first',
-        countLabel: function(n) { return n + ' 篇论文 / publications'; },
-        loading: '正在加载论文 / Loading…',
-        empty: '没有匹配的论文 / No matching publications.',
+        search: '搜索关键词…',
+        type: '类型',
+        allTypes: '全部类型',
+        allVenues: '全部期刊/会议',
+        sort: '排序',
+        newest: '最新优先',
+        oldest: '最早优先',
+        countLabel: function(n) { return n + ' 篇'; },
+        loading: '正在加载…',
+        empty: '没有匹配的论文',
         stats: {
-          papers: '论文 / Papers',
-          firstAuthor: '第一作者 / First-author',
-          coAuthor: '合著 / Co-authored',
-          venues: '期刊会议 / Venues'
+          papers: '论文',
+          firstAuthor: '第一作者',
+          coAuthor: '合著',
+          venues: '期刊会议'
         },
         yearHeading: function(y) { return y; },
-        noYear: '未标年份 / Undated',
+        noYear: '未标年份',
         ownerName: 'huang, yu-an'
       }
     });
@@ -247,262 +105,10 @@ def publications_block():
 """
 
 
-def teaching_block():
-    return """
-<section id="teaching" class="section section-alt">
-  <header class="section-header">
-    <h2 class="section-title"><span class="zh">教学</span><span class="en">Teaching</span></h2>
-    <div class="section-rule"></div>
-  </header>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <p>承担计算机学院本科与研究生课程，主要面向算法、程序设计与人工智能方向。</p>
-    </div>
-    <div class="lang-block en">
-      <p>Courses taught at the School of Computer Science, NWPU. Most are undergraduate,
-      focused on algorithms, programming and AI.</p>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>本学期课程</h3>
-      <ul class="course-list">
-        <li><span class="badge">本科</span>算法设计与分析实验（英语教学）</li>
-        <li><span class="badge">本科</span>程序设计基础 II 实验</li>
-        <li><span class="badge">本科</span>程序设计基础（C++）实验</li>
-        <li><span class="badge">本科</span>人工智能应用技术</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Current Courses</h3>
-      <ul class="course-list">
-        <li><span class="badge">UG</span>Algorithm Design &amp; Analysis Lab (English)</li>
-        <li><span class="badge">UG</span>Programming Foundations II Lab</li>
-        <li><span class="badge">UG</span>Programming Foundations (C++) Lab</li>
-        <li><span class="badge">UG</span>Applied AI Technologies</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>指导学生</h3>
-      <ul class="bullet-list">
-        <li>博士研究生：每年招收 1–2 名</li>
-        <li>硕士研究生（推免）：每年招收若干名</li>
-        <li>本科毕业设计：欢迎本科生加入课题组</li>
-      </ul>
-      <p class="muted">对学生的期待：扎实编程基础、对科研有热情、能读英文论文。</p>
-    </div>
-    <div class="lang-block en">
-      <h3>Advising</h3>
-      <ul class="bullet-list">
-        <li>Ph.D. students: 1–2 per year</li>
-        <li>M.Sc. students (推免): several per year</li>
-        <li>Undergraduate thesis: openings available — feel free to reach out</li>
-      </ul>
-      <p class="muted">What I look for: solid programming fundamentals, curiosity for research,
-        ability to read English papers.</p>
-    </div>
-  </div>
-</section>
-"""
-
-
-def cv_block():
-    return """
-<section id="cv" class="section">
-  <header class="section-header">
-    <h2 class="section-title"><span class="zh">个人简历</span><span class="en">Curriculum Vitae</span></h2>
-    <div class="section-rule"></div>
-  </header>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>基本信息</h3>
-      <ul class="bullet-list">
-        <li><strong>姓名</strong>：黄裕安 / Yu-An Huang</li>
-        <li><strong>职称</strong>：长聘教授、博士生导师</li>
-        <li><strong>单位</strong>：西北工业大学 · 计算机学院</li>
-        <li><strong>邮箱</strong>：<a href="mailto:yuanhuang@nwpu.edu.cn">yuanhuang@nwpu.edu.cn</a></li>
-        <li><strong>学位</strong>：哲学博士（香港理工大学，2020）</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Bio</h3>
-      <ul class="bullet-list">
-        <li><strong>Name</strong>: Yu-An Huang / 黄裕安</li>
-        <li><strong>Title</strong>: Tenured Professor &amp; Ph.D. Advisor</li>
-        <li><strong>Affiliation</strong>: School of CS, Northwestern Polytechnical University</li>
-        <li><strong>Email</strong>: <a href="mailto:yuanhuang@nwpu.edu.cn">yuanhuang@nwpu.edu.cn</a></li>
-        <li><strong>Ph.D.</strong>: The Hong Kong Polytechnic University, 2020</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>工作经历</h3>
-      <ul class="timeline">
-        <li><span class="when">至今</span><strong>西北工业大学</strong> · 计算机学院 · 长聘教授 / 博士生导师</li>
-        <li><span class="when">—</span><strong>西北工业大学</strong> · 计算机学院 · 副教授（破格晋升）</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Positions</h3>
-      <ul class="timeline">
-        <li><span class="when">Now</span><strong>Northwestern Polytechnical University</strong> · School of CS · Tenured Professor &amp; Ph.D. Advisor</li>
-        <li><span class="when">—</span><strong>Northwestern Polytechnical University</strong> · Associate Professor (early promotion)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>教育背景</h3>
-      <ul class="timeline">
-        <li><span class="when">2016–2020</span><strong>香港理工大学</strong> · 电子计算学系 · 博士</li>
-        <li><span class="when">—</span><strong>中国大陆</strong> · 本科 / 硕士（具体院校见个人档案）</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Education</h3>
-      <ul class="timeline">
-        <li><span class="when">2016–2020</span><strong>The Hong Kong Polytechnic University</strong> · Department of Computing · Ph.D.</li>
-        <li><span class="when">—</span><strong>China</strong> · B.Sc. / M.Sc. (see personal records)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>学术兼职</h3>
-      <ul class="bullet-list">
-        <li><em>Journal of Computational Biophysics and Chemistry</em> — 客座编辑</li>
-        <li><em>BMC Artificial Intelligence</em> — 编委</li>
-        <li><em>Interdisciplinary Medicine</em> — 青年编委</li>
-        <li>BIBM、ICIC — 程序委员会委员</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Editorial Service</h3>
-      <ul class="bullet-list">
-        <li>Guest Editor, <em>J. Comput. Biophys. Chem.</em></li>
-        <li>Editorial Board, <em>BMC Artificial Intelligence</em></li>
-        <li>Youth Editor, <em>Interdisciplinary Medicine</em></li>
-        <li>Program Committee, BIBM &amp; ICIC</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>学术指标</h3>
-      <ul class="bullet-list">
-        <li>论文总数：100+</li>
-        <li>Google Scholar 引用：4,000+</li>
-        <li>H-index：37</li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>Bibliometrics</h3>
-      <ul class="bullet-list">
-        <li>Total papers: 100+</li>
-        <li>Google Scholar citations: 4,000+</li>
-        <li>H-index: 37</li>
-      </ul>
-    </div>
-  </div>
-</section>
-"""
-
-
-def contact_block():
-    return """
-<section id="contact" class="section section-alt">
-  <header class="section-header">
-    <h2 class="section-title"><span class="zh">联系方式</span><span class="en">Contact</span></h2>
-    <div class="section-rule"></div>
-  </header>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>📧 电子邮件</h3>
-      <p>学术合作 / 招生咨询 / 报告邀请：<a href="mailto:yuanhuang@nwpu.edu.cn">yuanhuang@nwpu.edu.cn</a></p>
-      <p class="muted">通常 1–2 个工作日内回复。</p>
-
-      <h3>🏛️ 办公地址</h3>
-      <p>
-        陕西省西安市长安区<br>
-        西北工业大学 · 计算机学院<br>
-        （友谊校区 / 长安校区）
-      </p>
-
-      <h3>🤝 合作机会</h3>
-      <p>欢迎<strong>博士后、博士生、硕士推免生</strong>联系；也欢迎学术界、工业界科研合作。</p>
-      <p class="muted">关键词：单细胞分析、生物医学大数据、计算生物学、AI for Healthcare、图神经网络。</p>
-    </div>
-    <div class="lang-block en">
-      <h3>📧 Email</h3>
-      <p>For academic collaboration, admissions, or talk invitations:
-         <a href="mailto:yuanhuang@nwpu.edu.cn">yuanhuang@nwpu.edu.cn</a></p>
-      <p class="muted">I typically reply within 1–2 business days.</p>
-
-      <h3>🏛️ Office</h3>
-      <p>
-        School of Computer Science<br>
-        Northwestern Polytechnical University<br>
-        Xi'an, Shaanxi, China
-      </p>
-
-      <h3>🤝 Collaboration</h3>
-      <p>Open to <strong>postdoc, Ph.D., and Master's (推免)</strong> applicants, and to
-         academic &amp; industrial collaborations.</p>
-      <p class="muted">Keywords: single-cell analysis, biomedical big data, computational biology,
-         AI for healthcare, graph neural networks.</p>
-    </div>
-  </div>
-
-  <div class="dual-block">
-    <div class="lang-block zh">
-      <h3>🌐 在线档案</h3>
-      <ul class="link-grid">
-        <li><a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></li>
-        <li><a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a></li>
-        <li><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a></li>
-        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://teacher.nwpu.edu.cn/yuanhuang.html" target="_blank" rel="noopener">西工大主页 / NWPU</a></li>
-      </ul>
-    </div>
-    <div class="lang-block en">
-      <h3>🌐 Online Profiles</h3>
-      <ul class="link-grid">
-        <li><a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></li>
-        <li><a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a></li>
-        <li><a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a></li>
-        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://teacher.nwpu.edu.cn/yuanhuang.html" target="_blank" rel="noopener">NWPU Profile</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
-"""
-
-
-# ============================================================================
-#  PAGE TEMPLATE
-# ============================================================================
-
 NAV_ANCHORS = [
-    ("#home",          "主页 / Home"),
-    ("#research",      "研究 / Research"),
-    ("#news",          "动态 / News"),
-    ("#publications",  "论文 / Papers"),
-    ("#teaching",      "教学 / Teaching"),
-    ("#cv",            "简历 / CV"),
-    ("#contact",       "联系 / Contact"),
+    ("#home",         "主页"),
+    ("#news",         "动态"),
+    ("#publications", "论文"),
 ]
 
 
@@ -510,11 +116,7 @@ def nav_html():
     items = "\n".join(f'        <li><a href="{href}">{label}</a></li>' for href, label in NAV_ANCHORS)
     return f"""
     <nav class="topnav">
-      <a class="topnav-brand" href="#home">
-        <span class="zh">黄裕安</span>
-        <span class="sep">/</span>
-        <span class="en">Yu-An Huang</span>
-      </a>
+      <a class="topnav-brand" href="#home">黄裕安 · Yu-An Huang</a>
       <ul class="topnav-links">
 {items}
       </ul>
@@ -527,8 +129,8 @@ def page_template(body):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>黄裕安 · Yu-An Huang — 西北工业大学计算机学院</title>
-  <meta name="description" content="黄裕安 (Yu-An Huang), 西北工业大学计算机学院长聘教授、博士生导师。研究方向: 生物医学大数据、计算生物学、AI。">
+  <title>黄裕安 · 西北工业大学计算机学院</title>
+  <meta name="description" content="黄裕安 (Yu-An Huang), 西北工业大学计算机学院长聘教授、博士生导师。">
   <meta name="author" content="Yu-An Huang">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -539,33 +141,21 @@ def page_template(body):
 {body}
 </main>
 <footer class="site-footer">
-  <p>© 2026 Yu-An Huang · 黄裕安 · <a href="https://jsj.nwpu.edu.cn/" target="_blank" rel="noopener">西北工业大学计算机学院</a></p>
-  <p class="muted">Last updated: Sep 2026 · <a href="https://github.com/huang-yu-an/huang-yu-an.github.io" target="_blank" rel="noopener">Source on GitHub</a></p>
+  <p>© 2026 黄裕安 · Yu-An Huang · <a href="https://jsj.nwpu.edu.cn/" target="_blank" rel="noopener">西北工业大学计算机学院</a></p>
+  <p class="muted">最后更新 Sep 2026 · <a href="https://github.com/huang-yu-an/huang-yu-an.github.io" target="_blank" rel="noopener">源代码</a></p>
 </footer>
 </body>
 </html>
 """
 
 
-# ============================================================================
-#  MAIN
-# ============================================================================
-
 def main():
-    body = "\n".join([
-        hero_block(),
-        research_block(),
-        news_block(),
-        publications_block(),
-        teaching_block(),
-        cv_block(),
-        contact_block(),
-    ])
+    body = "\n".join([hero_block(), news_block(), publications_block()])
     html = page_template(body)
     out = ROOT / "index.html"
     out.write_text(html, encoding="utf-8")
     print(f"  wrote {out.relative_to(ROOT)}  ({len(html):,} bytes)")
-    print("\nSingle-page site generated.")
+    print("\nSingle-page site regenerated (CN-only, concise).")
 
 
 if __name__ == "__main__":
