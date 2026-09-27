@@ -1,0 +1,27 @@
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Local artifacts
+*.log
+._*
+
+# Generated screenshots / temp
+*.tmp
+.cache/
+
+# Build / dependency dirs (in case you add Node/Ruby later)
+node_modules/
+vendor/
+.bundle/
+_site/
+dist/
+
+# Environment overrides
+.env
+.env.*

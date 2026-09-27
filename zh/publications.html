@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>论文 · Yu-An Huang</title>
+  <meta name="description" content="黄裕安的全部论文列表（122 篇），按年份排序。">
+  <meta name="author" content="Yu-An Huang">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="nav-brand" href="./">黄裕安</a>
+      <ul class="nav-links">
+        <li><a href="index.html">主页</a></li>
+        <li><a href="publications.html" class="active">论文</a></li>
+        <li><a href="research.html">研究</a></li>
+        <li><a href="cv.html">简历</a></li>
+        <li><a href="teaching.html">教学</a></li>
+        <li><a href="news.html">动态</a></li>
+        <li><a href="contact.html">联系</a></li>
+      </ul>
+      <div class="nav-lang">
+        <a href="../zh/" class="active">中</a>
+        <a href="../en/">EN</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="container">
+
+<h1>论文发表</h1>
+<p>下面是完整的论文列表（共 122 篇），按发表年份倒序排列。支持搜索、按类型或会议/期刊筛选，以及排序。<br><strong>加粗</strong>作者为本人的姓名。</p>
+<div id="pub-target"></div>
+<script src="../assets/js/bibtex.js"></script>
+<script>
+  BibTeX.renderPublications({
+    bibPath: '../publications.bib',
+    target: document.getElementById('pub-target'),
+    labels: {
+      search: '搜索关键词…',
+      type: '类型',
+      allTypes: '全部类型',
+      allVenues: '全部期刊/会议',
+      sort: '排序',
+      newest: '最新优先',
+      oldest: '最早优先',
+      countLabel: function(n) { return n + ' 篇论文'; },
+      loading: '正在加载论文列表…',
+      empty: '没有匹配的论文',
+      stats: {
+        papers: '论文',
+        firstAuthor: '第一作者',
+        corresponding: '通讯作者',
+        venues: '期刊/会议'
+      },
+      yearHeading: function(y) { return y; },
+      noYear: '未标年份',
+      ownerName: 'huang, yu-an'
+    }
+  });
+</script>
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <p>© 2026 Yu-An Huang · 西北工业大学计算机学院</p>
+    <p><a href="https://github.com/yu-anhuang/yu-anhuang.github.io">Source on GitHub</a> · 最后更新: Sep 2026</p>
+  </footer>
+</body>
+</html>
