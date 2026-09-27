@@ -11,7 +11,7 @@ set -e
 SITE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SITE_DIR"
 
-GITHUB_USER="yu-anhuang"
+GITHUB_USER="huang-yu-an"
 REPO_NAME="${GITHUB_USER}.github.io"
 
 # --- 颜色输出 -----------------------------------------------------------

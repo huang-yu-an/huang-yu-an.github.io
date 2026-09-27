@@ -4,7 +4,7 @@ A clean, bilingual (中文 / English) academic homepage for **Yu-An Huang**
 (黄裕安), tenured professor at the School of Computer Science,
 Northwestern Polytechnical University (NWPU).
 
-- Live (after deployment): **https://yu-anhuang.github.io**
+- Live (after deployment): **https://huang-yu-an.github.io**
 - Source: this repository
 - Stack: pure static **HTML + CSS + vanilla JavaScript** — no build step,
   no Ruby, no Node. The publications page reads `publications.bib`
@@ -15,7 +15,7 @@ Northwestern Polytechnical University (NWPU).
 ## Repository layout
 
 ```
-yu-anhuang.github.io/
+huang-yu-an.github.io/
 ├── index.html                  ← language picker (中 / EN)
 ├── publications.bib            ← full BibTeX (122 entries)
 ├── assets/
@@ -101,7 +101,7 @@ tag in both `zh/index.html` and `en/index.html` to point at it (replace
 ## Deploying to GitHub Pages
 
 ### One-time setup
-1. On GitHub, create a new repository named **`yu-anhuang.github.io`**
+1. On GitHub, create a new repository named **`huang-yu-an.github.io`**
    (must be exactly this name, public, no README / .gitignore).
 2. Configure git identity (only needed the very first time):
    ```bash
@@ -125,7 +125,7 @@ repo doesn't exist it will tell you exactly what to do.
 
 ### Manual way
 ```bash
-git remote add origin git@github.com:yu-anhuang/yu-anhuang.github.io.git
+git remote add origin git@github.com:huang-yu-an/huang-yu-an.github.io.git
 git add -A
 git commit -m "Initial personal academic website"
 git push -u origin main
@@ -137,7 +137,7 @@ On GitHub, go to **Settings → Pages → Build and deployment**:
 - Branch: **main** / **(root)**
 - Click **Save**
 
-Wait ~1 minute. Your site will be live at **https://yu-anhuang.github.io**.
+Wait ~1 minute. Your site will be live at **https://huang-yu-an.github.io**.
 
 ### Subsequent updates
 ```bash
@@ -147,11 +147,11 @@ Or manually: `git add -A && git commit -m "..." && git push`. GitHub Pages
 rebuilds automatically — refresh your browser in ~30s.
 
 ### Optional · use a custom domain
-1. Buy a domain (e.g. `yu-anhuang.com`).
-2. In your DNS provider, add a CNAME record pointing to `yu-anhuang.github.io`.
+1. Buy a domain (e.g. `huang-yu-an.com`).
+2. In your DNS provider, add a CNAME record pointing to `huang-yu-an.github.io`.
 3. In this repo, create a file `CNAME` (no extension) containing:
    ```
-   yu-anhuang.com
+   huang-yu-an.com
    ```
 4. Push. In Settings → Pages, GitHub will issue a free Let's Encrypt cert.
 

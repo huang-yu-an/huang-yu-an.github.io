@@ -7,7 +7,7 @@ Produces root index.html (language picker), /zh/* pages, and /en/* pages.
 import os
 from pathlib import Path
 
-ROOT = Path('/Users/huang/WorkBuddy/2026-09-27-16-20-44/yu-anhuang.github.io')
+ROOT = Path('/Users/huang/WorkBuddy/2026-09-27-16-20-44/huang-yu-an.github.io')
 PHOTO = "assets/img/avatar.svg"  # drop a real photo at assets/img/photo.jpg to swap
 
 # ----------------------------------------------------------------------
@@ -84,7 +84,7 @@ def page_template(lang, current_page, title, body, description=""):
   </main>
   <footer class="site-footer">
     <p>© 2026 Yu-An Huang · {'西北工业大学计算机学院' if lang == 'zh' else 'School of Computer Science, Northwestern Polytechnical University'}</p>
-    <p><a href="https://github.com/yu-anhuang/yu-anhuang.github.io">Source on GitHub</a> · {'最后更新' if lang == 'zh' else 'Last updated'}: Sep 2026</p>
+    <p><a href="https://github.com/huang-yu-an/huang-yu-an.github.io">Source on GitHub</a> · {'最后更新' if lang == 'zh' else 'Last updated'}: Sep 2026</p>
   </footer>
 </body>
 </html>
@@ -898,7 +898,7 @@ def main():
       </div>
     </div>
     <p style="text-align:center;color:var(--c-text-muted);font-size:.85rem;">
-      Or jump directly to <a href="https://yu-anhuang.github.io/">https://yu-anhuang.github.io</a>
+      Or jump directly to <a href="https://huang-yu-an.github.io/">https://huang-yu-an.github.io</a>
     </p>
   </main>
   <footer class="site-footer">
