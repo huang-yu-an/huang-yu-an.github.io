@@ -315,7 +315,7 @@ def publications_body(lang):
             "empty": "没有匹配的论文",
             "papers": "论文",
             "firstAuthor": "第一作者",
-            "corresponding": "通讯作者",
+            "coAuthor": "合著论文",
             "venues": "期刊/会议",
             "noYear": "未标年份",
         }
@@ -337,7 +337,7 @@ def publications_body(lang):
             "empty": "No matching publications.",
             "papers": "Papers",
             "firstAuthor": "First-author",
-            "corresponding": "Corresponding",
+            "coAuthor": "Co-authored",
             "venues": "Venues",
             "noYear": "Undated",
         }
@@ -364,7 +364,7 @@ def publications_body(lang):
       stats: {{
         papers: '{L["papers"]}',
         firstAuthor: '{L["firstAuthor"]}',
-        corresponding: '{L["corresponding"]}',
+        coAuthor: '{L["coAuthor"]}',
         venues: '{L["venues"]}'
       }},
       yearHeading: function(y) {{ return y; }},

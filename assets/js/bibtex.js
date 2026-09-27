@@ -499,21 +499,18 @@
 
   function computeStats(entries, ownerName) {
     const ownerLower = (ownerName || "huang, yu-an").toLowerCase();
-    let firstAuthor = 0, corresponding = 0;
+    let firstAuthor = 0, coAuthor = 0;
     const venueSet = new Set();
     entries.forEach((e) => {
       if (e._venue) venueSet.add(e._venue);
       const authors = e._authors;
       if (authors[0] && authors[0].toLowerCase().startsWith(ownerLower)) firstAuthor++;
-      // Corresponding authors are often marked by an asterisk in HTML lists,
-      // but in BibTeX there's no standard. We'll leave this as 0 unless user
-      // adds a custom field. To approximate: if owner appears anywhere, count.
-      if (authors.some((a) => a.toLowerCase().startsWith(ownerLower))) corresponding++;
+      if (authors.some((a) => a.toLowerCase().startsWith(ownerLower))) coAuthor++;
     });
     return {
       total: entries.length,
       firstAuthor,
-      corresponding,
+      coAuthor,
       venues: venueSet.size
     };
   }
