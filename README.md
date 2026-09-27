@@ -33,7 +33,8 @@ yu-anhuang.github.io/
 │   ├── news.html
 │   └── contact.html
 ├── en/                         ← English pages (same structure)
-└── _generate_pages.py          ← page-generation script (edit then re-run)
+├── _scripts/generate_pages.py  ← page-generation script (edit then re-run)
+└── deploy.sh                   ← one-shot push helper (auto-detects auth)
 ```
 
 ---
@@ -102,28 +103,48 @@ tag in both `zh/index.html` and `en/index.html` to point at it (replace
 ### One-time setup
 1. On GitHub, create a new repository named **`yu-anhuang.github.io`**
    (must be exactly this name, public, no README / .gitignore).
-2. Add the remote locally and push:
+2. Configure git identity (only needed the very first time):
    ```bash
-   git remote add origin git@github.com:yu-anhuang/yu-anhuang.github.io.git
-   git add -A
-   git commit -m "Initial personal academic website"
-   git push -u origin main
+   git config --global user.name  "Yu-An Huang"
+   git config --global user.email "your-github-email@example.com"
    ```
-3. On GitHub, go to **Settings → Pages → Build and deployment**:
-   - Source: **Deploy from a branch**
-   - Branch: **main** / **(root)**
-4. Wait ~1 minute. Your site will be live at
-   **https://yu-anhuang.github.io**.
+3. Configure auth — pick ONE:
+   - **SSH (recommended)**: `ssh-keygen -t ed25519`, then add the public key at
+     https://github.com/settings/keys
+   - **HTTPS + token**: create a Personal Access Token at
+     https://github.com/settings/tokens (scope: `repo`), then push — git will
+     prompt for username + token-as-password
+
+### Easy way · use the helper script
+```bash
+./deploy.sh "your commit message"
+```
+The script auto-detects your auth method (SSH / HTTPS / gh CLI), adds the
+remote if missing, commits any uncommitted changes, and pushes. If the GitHub
+repo doesn't exist it will tell you exactly what to do.
+
+### Manual way
+```bash
+git remote add origin git@github.com:yu-anhuang/yu-anhuang.github.io.git
+git add -A
+git commit -m "Initial personal academic website"
+git push -u origin main
+```
+
+### Enable Pages
+On GitHub, go to **Settings → Pages → Build and deployment**:
+- Source: **Deploy from a branch**
+- Branch: **main** / **(root)**
+- Click **Save**
+
+Wait ~1 minute. Your site will be live at **https://yu-anhuang.github.io**.
 
 ### Subsequent updates
 ```bash
-# Edit content, then:
-git add -A
-git commit -m "Add 2026 AAAI paper"
-git push
+./deploy.sh "Add 2026 AAAI paper"
 ```
-
-GitHub Pages rebuilds automatically — refresh your browser in ~30s.
+Or manually: `git add -A && git commit -m "..." && git push`. GitHub Pages
+rebuilds automatically — refresh your browser in ~30s.
 
 ### Optional · use a custom domain
 1. Buy a domain (e.g. `yu-anhuang.com`).
